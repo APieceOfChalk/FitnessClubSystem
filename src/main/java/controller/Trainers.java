@@ -1,64 +1,70 @@
 package main.java.controller;
 
 
-public class Trainers extends AbstractController {
+import javafx.beans.property.SimpleStringProperty;
 
-    private Integer id;
-    private String name;
-    private String passport;
-    private String phone;
-    private String address;
+public class Trainers {
 
+    SimpleStringProperty id;
+    SimpleStringProperty name;
+    SimpleStringProperty passport;
+    SimpleStringProperty phone;
+    SimpleStringProperty address;
 
-    public Trainers() {}
-
-    public Trainers(Integer id, String name, String passport, String phone, String address, Classes classes) {
-        this.id = id;
-        this.name = name;
-        this.passport = passport;
-        this.phone = phone;
-        this.address = address;
+    public Trainers(String id, String name, String passport, String phone, String address) {
+        this.id = new SimpleStringProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.passport = new SimpleStringProperty (passport);
+        this.phone = new SimpleStringProperty(phone);
+        this.address = new SimpleStringProperty(address);
     }
 
-    public Integer getId() {
-        return id;
-    }
+    public String getId() { return id.get(); }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = new SimpleStringProperty(id);
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
     }
 
     public String getPassport() {
-        return passport;
+        return passport.get();
     }
 
     public void setPassport(String passport) {
-        this.passport = passport;
+        this.passport = new SimpleStringProperty (passport);
     }
 
     public String getPhone() {
-        return phone;
+        return phone.get();
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        new SimpleStringProperty(phone);
     }
 
     public String getAddress() {
-        return address;
+        return address.get();
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        new SimpleStringProperty(address);
     }
 
-
+    @Override
+    public String toString() {
+        return "Trainers{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", passport='" + passport + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }
