@@ -1,2 +1,2 @@
 # FitnessClubSystem
-Rest API server + JavaFX client. 
+JavaFX client. 
