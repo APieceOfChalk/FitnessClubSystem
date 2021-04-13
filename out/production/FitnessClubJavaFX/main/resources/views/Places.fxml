@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="content-view" stylesheets="@styles/application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.Trainers">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="content-view" stylesheets="@styles/application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.tables.PlacesTbl">
    <children>
       <HBox>
          <children>
@@ -35,10 +35,10 @@
       </HBox>
       <VBox styleClass="table-wrapper" VBox.vgrow="ALWAYS">
          <children>
-            <TableView fx:id="trainersTable" prefHeight="200.0" prefWidth="788.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="placesTable" prefHeight="200.0" prefWidth="764.0" VBox.vgrow="ALWAYS">
                <columns>
-                  <TableColumn fx:id="id" prefWidth="95.0" text="Id" />
-                  <TableColumn fx:id="name" prefWidth="961.5834121704102" text="Зал" />
+                  <TableColumn fx:id="id" prefWidth="150.0" styleClass="table-view" text="Id" />
+                  <TableColumn fx:id="name" prefWidth="909.8550872802734" styleClass="table-view" text="Зал" />
                </columns>
                <styleClass>
                   <String fx:value="table-view" />

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="content-view" stylesheets="@styles/application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.Clients">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="content-view" stylesheets="@styles/application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.tables.ClientsTbl">
    <children>
       <HBox>
          <children>
@@ -35,12 +35,12 @@
       </HBox>
       <VBox styleClass="table-wrapper" VBox.vgrow="ALWAYS">
          <children>
-            <TableView fx:id="trainersTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="clientsTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <columns>
-                  <TableColumn fx:id="id" prefWidth="75.0" text="Id" />
-                  <TableColumn fx:id="name" prefWidth="409.5654067993164" text="ФИО" />
-                  <TableColumn fx:id="passport" prefWidth="262.2826843261719" text="Паспортные данные" />
-                  <TableColumn fx:id="phone" prefWidth="311.21734619140625" text="Номера телефона" />
+                  <TableColumn fx:id="id" prefWidth="75.0" styleClass="table-view" text="Id" />
+                  <TableColumn fx:id="name" prefWidth="409.5654067993164" styleClass="table-view" text="ФИО" />
+                  <TableColumn fx:id="passport" prefWidth="262.2826843261719" styleClass="table-view" text="Паспортные данные" />
+                  <TableColumn fx:id="phone" prefWidth="312.5" styleClass="table-view" text="Номера телефона" />
                </columns>
                <styleClass>
                   <String fx:value="table-view" />
