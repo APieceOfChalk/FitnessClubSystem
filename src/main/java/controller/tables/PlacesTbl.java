@@ -60,7 +60,6 @@ public class PlacesTbl extends AbstractController {
         }
 
         ObservableList observableList = FXCollections.observableList(places);
-        System.out.println(observableList);
 
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));

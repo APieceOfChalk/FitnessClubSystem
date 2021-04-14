@@ -64,7 +64,6 @@ public class ClientsTbl extends AbstractController {
         }
 
         ObservableList observableList = FXCollections.observableList(clients);
-        System.out.println(observableList);
 
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));

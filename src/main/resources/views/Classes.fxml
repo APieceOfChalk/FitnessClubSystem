@@ -38,9 +38,9 @@
             <TableView fx:id="classesTable" prefHeight="200.0" prefWidth="788.0" VBox.vgrow="ALWAYS">
                <columns>
                   <TableColumn fx:id="id" prefWidth="100.0" styleClass="table-view" text="Id" />
-                  <TableColumn fx:id="name" prefWidth="756.6012115478516" styleClass="table-view" text="Занятие" />
-                  <TableColumn fx:id="trainerId" prefWidth="100.0" styleClass="table-view" text="Id тренера" />
-                  <TableColumn fx:id="areaId" prefWidth="100.0" styleClass="table-view" text="Id зала" />
+                  <TableColumn fx:id="name" prefWidth="216.2311782836914" styleClass="table-view" text="Занятие" />
+                  <TableColumn fx:id="trainerId" prefWidth="468.2688293457031" styleClass="table-view" text="Тренер" />
+                  <TableColumn fx:id="areaId" prefWidth="273.4266357421875" styleClass="table-view" text="Зал" />
                </columns>
                <styleClass>
                   <String fx:value="table-view" />

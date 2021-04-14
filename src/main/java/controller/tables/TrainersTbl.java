@@ -64,7 +64,6 @@ public class TrainersTbl extends AbstractController {
         }
 
         ObservableList observableList = FXCollections.observableList(trainers);
-        System.out.println(observableList);
 
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));

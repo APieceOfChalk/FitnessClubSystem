@@ -55,11 +55,8 @@ public class ClassesTbl extends AbstractController {
 
             String id = classesObject.get("id").getAsString();
             String name = classesObject.get("name").getAsString();
-            String areaId = classesObject.get("area").getAsJsonObject().get("id").getAsString();
-            String trainerId = classesObject.get("trainer").getAsJsonObject().get("id").getAsString();
-
-            System.out.println(areaId);
-            System.out.println(trainerId);
+            String areaId = classesObject.get("area").getAsJsonObject().get("name").getAsString();
+            String trainerId = classesObject.get("trainer").getAsJsonObject().get("name").getAsString();
 
             Classes class_ = new Classes(id, name, areaId, trainerId);
             classes.add(class_);
@@ -67,7 +64,6 @@ public class ClassesTbl extends AbstractController {
         }
 
         ObservableList observableList = FXCollections.observableList(classes);
-        System.out.println(observableList);
 
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));

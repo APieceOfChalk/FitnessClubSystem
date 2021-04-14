@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="content-view" stylesheets="@styles/application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.Subscriptions">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="content-view" stylesheets="@styles/application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.tables.SubscriptionsTbl">
    <children>
       <HBox>
          <children>
@@ -37,14 +37,13 @@
       </HBox>
       <VBox styleClass="table-wrapper" VBox.vgrow="ALWAYS">
          <children>
-            <TableView fx:id="trainersTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="subscriptionsTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <columns>
                   <TableColumn fx:id="id" text="Id" />
-                  <TableColumn fx:id="client_id" text="Id клиента" />
-                  <TableColumn fx:id="classes_id" text="Id занятия" />
-                  <TableColumn fx:id="date" prefWidth="311.21734619140625" text="Срок" />
-                  <TableColumn fx:id="price" prefWidth="311.21734619140625" text="Цена" />
-                  <TableColumn fx:id="payment_status" prefWidth="196.0" text="Статус оплаты" />
+                  <TableColumn fx:id="client" prefWidth="361.6765670776367" text="Клиент" />
+                  <TableColumn fx:id="activity" minWidth="1.23040771484375" prefWidth="205.82345581054688" text="Занятие" />
+                  <TableColumn fx:id="date" prefWidth="215.914794921875" text="Срок" />
+                  <TableColumn fx:id="price" prefWidth="199.585205078125" text="Цена" />
                </columns>
                <styleClass>
                   <String fx:value="table-view" />
