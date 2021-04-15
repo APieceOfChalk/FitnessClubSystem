@@ -165,13 +165,13 @@
 }
 
 .search-bar > TextField, .search-bar > ComboBox {
-    -fx-pref-width: 200px;
-    -fx-max-width: 280px;
+    -fx-pref-width: 280px;
+    -fx-max-width: 380px;
 }
 
 .search-bar > TextField, .search-bar > ComboBox {
-    -fx-pref-width: 200px;
-    -fx-max-width: 280px;
+    -fx-pref-width: 280px;
+    -fx-max-width: 380px;
 }
 
 .table-wrapper {

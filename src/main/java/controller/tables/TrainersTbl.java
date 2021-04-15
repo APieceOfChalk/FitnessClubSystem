@@ -3,9 +3,12 @@ package main.java.controller.tables;
 import com.google.gson.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
 import main.java.controller.Trainers;
@@ -22,6 +25,8 @@ public class TrainersTbl extends AbstractController {
 
     @FXML
     private TableView<Trainers> trainersTable;
+    @FXML
+    private TextField searchField;
 
     @FXML private TableColumn<Trainers, String> id;
     @FXML private TableColumn<Trainers, String> name;
@@ -71,7 +76,32 @@ public class TrainersTbl extends AbstractController {
         passport.setCellValueFactory(new PropertyValueFactory<>("passport"));
         phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
-        trainersTable.setItems(observableList);
+
+        FilteredList<Trainers> filteredData = new FilteredList<>(observableList, p -> true);
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(myObject -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (String.valueOf(myObject.getName()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getId()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+
+
+                return false;
+            });
+        });
+
+        SortedList<Trainers> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(trainersTable.comparatorProperty());
+        trainersTable.setItems(sortedData);
 
     }
 

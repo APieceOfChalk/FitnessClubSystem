@@ -6,11 +6,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
+import main.java.controller.Places;
 import main.java.controller.Places;
 
 import java.io.IOException;
@@ -25,6 +29,8 @@ public class PlacesTbl extends AbstractController {
 
     @FXML
     private TableView<Places> placesTable;
+    @FXML
+    private TextField searchField;
 
     @FXML private TableColumn<Places, String> id;
     @FXML private TableColumn<Places, String> name;
@@ -64,9 +70,33 @@ public class PlacesTbl extends AbstractController {
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        placesTable.setItems(observableList);
+
+        FilteredList<Places> filteredData = new FilteredList<>(observableList, p -> true);
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(myObject -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (String.valueOf(myObject.getName()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (String.valueOf(myObject.getId()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+
+
+                return false;
+            });
+        });
+
+        SortedList<Places> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(placesTable.comparatorProperty());
+        placesTable.setItems(sortedData);
 
     }
-
 
 }
