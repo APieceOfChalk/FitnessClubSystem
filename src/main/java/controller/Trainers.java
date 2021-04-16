@@ -1,9 +1,14 @@
 package main.java.controller;
 
 
+import com.google.gson.Gson;
 import javafx.beans.property.SimpleStringProperty;
+import main.java.models.ApiModel;
 
-public class Trainers {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Trainers implements ApiModel {
 
     SimpleStringProperty id;
     SimpleStringProperty name;
@@ -66,5 +71,17 @@ public class Trainers {
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 '}';
+    }
+
+    @Override
+    public String toJson() {
+        Map<String, String> map = new HashMap<>();
+        map.put("name", name.get());
+        map.put("passport", passport.get());
+        map.put("phone", phone.get());
+        map.put("address", address.get());
+
+        Gson gson = new Gson();
+        return gson.toJson(map);
     }
 }

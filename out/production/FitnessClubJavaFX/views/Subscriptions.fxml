@@ -2,7 +2,6 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -29,10 +28,8 @@
       </HBox>
       <HBox styleClass="search-bar">
          <children>
-            <ComboBox prefWidth="150.0" />
-            <TextField fx:id="nameSearch" promptText="Имя клиента" />
-            <Button mnemonicParsing="false" styleClass="wid-120" text="Найти" />
-            <Button layoutX="400.0" layoutY="10.0" mnemonicParsing="false" styleClass="wid-120" text="Очистить" />
+            <TextField fx:id="searchField" promptText="Поиск" />
+            <Button mnemonicParsing="false" onMouseClicked="#handleDeleteAction" styleClass="wid-120" text="Удалить" />
          </children>
       </HBox>
       <VBox styleClass="table-wrapper" VBox.vgrow="ALWAYS">

@@ -27,9 +27,8 @@
       </HBox>
       <HBox styleClass="search-bar">
          <children>
-            <TextField fx:id="nameSearch" promptText="Имя тренера" />
-            <Button mnemonicParsing="false" styleClass="wid-120" text="Найти" />
-            <Button layoutX="400.0" layoutY="10.0" mnemonicParsing="false" styleClass="wid-120" text="Очистить" />
+            <TextField fx:id="searchField" promptText="Поиск" />
+            <Button mnemonicParsing="false" onMouseClicked="#handleDeleteAction" styleClass="wid-120" text="Удалить" />
          </children>
       </HBox>
       <VBox styleClass="table-wrapper" VBox.vgrow="ALWAYS">

@@ -9,13 +9,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
 import main.java.controller.Places;
-import main.java.controller.Places;
+import main.java.controller.popups.PlacesEdit;
+import main.java.utils.RestApi;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,16 +26,46 @@ import java.util.List;
 
 public class PlacesTbl extends AbstractController {
 
+    private RestApi myApiSession = new RestApi();
+
     @FXML
     private TableView<Places> placesTable;
     @FXML
     private TextField searchField;
 
+
     @FXML private TableColumn<Places, String> id;
     @FXML private TableColumn<Places, String> name;
 
+
     public void initialize() throws IOException {
         initTable();
+    }
+
+    @FXML
+    public void addNew() {
+        PlacesEdit.showView();
+    }
+
+
+    @FXML
+    private void handleDeleteAction() throws IOException {
+        int selectedIndex = placesTable.getSelectionModel().getSelectedIndex();
+        System.out.println(selectedIndex);
+        if (selectedIndex >= 0) {
+            Places currentPlace = placesTable.getItems().get(selectedIndex);
+            if (myApiSession.deletePlace(currentPlace)) {
+                initTable();
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ОШИБКА");
+            alert.setHeaderText("Залы не выбраны");
+            alert.setContentText("Пожалуйста выберите зал");
+
+            alert.showAndWait();
+        }
     }
 
 
@@ -98,5 +127,7 @@ public class PlacesTbl extends AbstractController {
         placesTable.setItems(sortedData);
 
     }
+
+
 
 }

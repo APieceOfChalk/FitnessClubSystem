@@ -9,12 +9,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
 import main.java.controller.Clients;
+import main.java.utils.RestApi;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,8 +38,30 @@ public class ClientsTbl extends AbstractController {
     @FXML private TableColumn<Clients, String> passport;
     @FXML private TableColumn<Clients, String> phone;
 
+    private RestApi myApiSession = new RestApi();
+
     public void initialize() throws IOException {
         initTable();
+    }
+
+    @FXML
+    private void handleDeleteAction() throws IOException {
+        int selectedIndex = clientsTable.getSelectionModel().getSelectedIndex();
+        System.out.println(selectedIndex);
+        if (selectedIndex >= 0) {
+            Clients currentClient = clientsTable.getItems().get(selectedIndex);
+            if (myApiSession.deleteClient(currentClient)) {
+                initTable();
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ОШИБКА");
+            alert.setHeaderText("Клиенты не выбраны");
+            alert.setContentText("Пожалуйста выберите клиента");
+
+            alert.showAndWait();
+        }
     }
 
 

@@ -6,12 +6,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
 import main.java.controller.Trainers;
+import main.java.utils.RestApi;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrainersTbl extends AbstractController {
+
+    private RestApi myApiSession = new RestApi();
 
     @FXML
     private TableView<Trainers> trainersTable;
@@ -39,6 +43,25 @@ public class TrainersTbl extends AbstractController {
         initTable();
     }
 
+    @FXML
+    private void handleDeleteAction() throws IOException {
+        int selectedIndex = trainersTable.getSelectionModel().getSelectedIndex();
+        System.out.println(selectedIndex);
+        if (selectedIndex >= 0) {
+            Trainers currentTrainer = trainersTable.getItems().get(selectedIndex);
+            if (myApiSession.deleteTrainer(currentTrainer)) {
+                initTable();
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ОШИБКА");
+            alert.setHeaderText("Тренер не выбран");
+            alert.setContentText("Пожалуйста выберите тренера");
+
+            alert.showAndWait();
+        }
+    }
 
     private void initTable() throws IOException {
 

@@ -9,12 +9,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
 import main.java.controller.Classes;
+import main.java.utils.RestApi;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,8 +42,30 @@ public class ClassesTbl extends AbstractController {
     @FXML
     private TableColumn<Classes, String> areaId;
 
+    private RestApi myApiSession = new RestApi();
+
     public void initialize() throws IOException {
         initTable();
+    }
+
+    @FXML
+    private void handleDeleteAction() throws IOException {
+        int selectedIndex = classesTable.getSelectionModel().getSelectedIndex();
+        System.out.println(selectedIndex);
+        if (selectedIndex >= 0) {
+            Classes currentClass = classesTable.getItems().get(selectedIndex);
+            if (myApiSession.deleteClass(currentClass)) {
+                initTable();
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ОШИБКА");
+            alert.setHeaderText("Занятия не выбраны");
+            alert.setContentText("Пожалуйста выберите занятие");
+
+            alert.showAndWait();
+        }
     }
 
     private void initTable() throws IOException {

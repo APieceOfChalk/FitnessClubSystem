@@ -113,14 +113,20 @@
 
 .dialog-title {
     -fx-font-size: 24px;
+    -fx-text-fill: secondary-light;
 }
 
 .dialog-message-box {
     -fx-padding: 20 0 20 0;
+    -fx-spacing: 5;
 }
 
 .dialog-message-box Label {
     -fx-font-size: 18px;
+}
+
+.dialog-input-box {
+    -fx-spacing: 5;
 }
 
 .sp-10 {
@@ -159,19 +165,20 @@
     -fx-fill: secondary;
 }
 
+
 .search-bar {
     -fx-padding: 0 0 0 20;
     -fx-spacing: 10;
 }
 
 .search-bar > TextField, .search-bar > ComboBox {
-    -fx-pref-width: 200px;
-    -fx-max-width: 280px;
+    -fx-pref-width: 280px;
+    -fx-max-width: 380px;
 }
 
 .search-bar > TextField, .search-bar > ComboBox {
-    -fx-pref-width: 200px;
-    -fx-max-width: 280px;
+    -fx-pref-width: 280px;
+    -fx-max-width: 380px;
 }
 
 .table-wrapper {
@@ -199,14 +206,13 @@
 }
 
 .table-view .table-cell{
-    -fx-border-color: transparent;
+    -fx-border-color: primary;
     -fx-padding: 2 0 2 10px;
     -fx-text-background-color: secondary-light;
     -fx-alignment: CENTER;
-
 }
+
 .table-row-cell:hover {
-    -fx-background-color: #343A40;
     -fx-text-fill: secondary;
 }
 .table-row-cell:odd{
