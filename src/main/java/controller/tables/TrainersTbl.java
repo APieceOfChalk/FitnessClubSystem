@@ -13,6 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
 import main.java.controller.Trainers;
+import main.java.controller.popups.ClientsAdd;
+import main.java.controller.popups.TrainersAdd;
+import main.java.controller.popups.TrainersEdit;
 import main.java.utils.RestApi;
 
 import java.io.IOException;
@@ -44,6 +47,11 @@ public class TrainersTbl extends AbstractController {
     }
 
     @FXML
+    private void handleNewTrainer() {
+        TrainersAdd.showAddView();
+    }
+
+    @FXML
     private void handleDeleteAction() throws IOException {
         int selectedIndex = trainersTable.getSelectionModel().getSelectedIndex();
         System.out.println(selectedIndex);
@@ -57,6 +65,22 @@ public class TrainersTbl extends AbstractController {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ОШИБКА");
             alert.setHeaderText("Тренер не выбран");
+            alert.setContentText("Пожалуйста выберите тренера");
+
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void editTrainersData() {
+        int selectedIndex = trainersTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            Trainers buf = trainersTable.getItems().get(selectedIndex);
+            TrainersEdit.showEditView(buf);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ОШИБКА");
+            alert.setHeaderText("Тренеры не выбраны");
             alert.setContentText("Пожалуйста выберите тренера");
 
             alert.showAndWait();
@@ -126,6 +150,11 @@ public class TrainersTbl extends AbstractController {
         sortedData.comparatorProperty().bind(trainersTable.comparatorProperty());
         trainersTable.setItems(sortedData);
 
+    }
+
+    @FXML
+    public void updateTable() throws IOException {
+        initTable();
     }
 
 }

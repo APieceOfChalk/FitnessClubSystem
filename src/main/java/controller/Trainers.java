@@ -24,6 +24,9 @@ public class Trainers implements ApiModel {
         this.address = new SimpleStringProperty(address);
     }
 
+    public Trainers() {
+    }
+
     public String getId() { return id.get(); }
 
     public void setId(String id) {
@@ -51,7 +54,7 @@ public class Trainers implements ApiModel {
     }
 
     public void setPhone(String phone) {
-        new SimpleStringProperty(phone);
+        this.phone = new SimpleStringProperty(phone);
     }
 
     public String getAddress() {
@@ -59,7 +62,7 @@ public class Trainers implements ApiModel {
     }
 
     public void setAddress(String address) {
-        new SimpleStringProperty(address);
+        this.address = new SimpleStringProperty(address);
     }
 
     @Override

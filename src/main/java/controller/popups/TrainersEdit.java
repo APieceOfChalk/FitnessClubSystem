@@ -8,12 +8,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import main.java.controller.Clients;
-import main.java.controller.Places;
+import main.java.controller.Trainers;
 import main.java.utils.RestApi;
 
 
-public class ClientsEdit {
+public class TrainersEdit {
 
     @FXML
     private TextField name;
@@ -22,12 +21,14 @@ public class ClientsEdit {
     @FXML
     private TextField phone;
     @FXML
+    private TextField address;
+    @FXML
     private Label title;
     @FXML
     private Label message;
 
     private RestApi myApiSession = new RestApi();
-    private Clients client;
+    private Trainers trainer;
 
 
 
@@ -36,17 +37,17 @@ public class ClientsEdit {
         name.getScene().getWindow().hide();
     }
 
-    public static void showEditView(Clients client) {
+    public static void showEditView(Trainers trainer) {
         try {
 
             Stage stage = new Stage(StageStyle.UNDECORATED);
             stage.initModality(Modality.APPLICATION_MODAL);
 
-            FXMLLoader loader = new FXMLLoader(ClientsEdit.class.getResource("/views/popups/ClientsEdit.fxml"));
+            FXMLLoader loader = new FXMLLoader(TrainersEdit.class.getResource("/views/popups/TrainersEdit.fxml"));
             stage.setScene(new Scene(loader.load()));
 
-            ClientsEdit controller = loader.getController();
-            controller.setClient(client);
+            TrainersEdit controller = loader.getController();
+            controller.setTrainer(trainer);
 
 
             stage.show();
@@ -59,21 +60,23 @@ public class ClientsEdit {
     @FXML
     private void handleOk() {
         if (isInputValid()) {
-            client.setName(name.getText());
-            client.setPassport(passport.getText());
-            client.setPhone(phone.getText());
-            myApiSession.updateClient(client);
+            trainer.setName(name.getText());
+            trainer.setPassport(passport.getText());
+            trainer.setPhone(phone.getText());
+            trainer.setAddress(address.getText());
+            myApiSession.updateTrainer(trainer);
             name.getScene().getWindow().hide();
         }
     }
 
-    public void setClient(Clients client) {
-        this.client = client;
+    public void setTrainer(Trainers trainer) {
+        this.trainer = trainer;
         title.setText("Редактировать клиента");
 
-        name.setText(client.getName());
-        passport.setText(client.getPassport());
-        phone.setText(client.getPhone());
+        name.setText(trainer.getName());
+        passport.setText(trainer.getPassport());
+        phone.setText(trainer.getPhone());
+        address.setText(trainer.getAddress());
     }
 
 
@@ -87,6 +90,9 @@ public class ClientsEdit {
         }
         else if (phone.getText() == null || phone.getText().length() == 0) {
             errorMessage += "Не валиден номер телефона";
+        }
+        else if (address.getText() == null || address.getText().length() == 0) {
+            errorMessage += "Не валиден адрес";
         }
 
         if (errorMessage.length() == 0) {

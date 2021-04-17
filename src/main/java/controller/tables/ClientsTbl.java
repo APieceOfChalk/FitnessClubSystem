@@ -16,11 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
 import main.java.controller.Clients;
-import main.java.controller.Places;
 import main.java.controller.popups.ClientsAdd;
 import main.java.controller.popups.ClientsEdit;
-import main.java.controller.popups.PlacesAdd;
-import main.java.controller.popups.PlacesEdit;
 import main.java.utils.RestApi;
 
 import java.io.IOException;
@@ -55,7 +52,7 @@ public class ClientsTbl extends AbstractController {
     }
 
     @FXML
-    private void handleDeleteAction() throws IOException {
+    private void handleDeleteAction() {
         int selectedIndex = clientsTable.getSelectionModel().getSelectedIndex();
         System.out.println(selectedIndex);
         if (selectedIndex >= 0) {
