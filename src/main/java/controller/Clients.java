@@ -18,8 +18,11 @@ public class Clients implements ApiModel {
     public Clients(String id, String name, String passport, String phone) {
         this.id = new SimpleStringProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.passport = new SimpleStringProperty (passport);
+        this.passport = new SimpleStringProperty(passport);
         this.phone = new SimpleStringProperty(phone);
+    }
+
+    public Clients() {
     }
 
     public String getId() { return id.get(); }
@@ -41,15 +44,14 @@ public class Clients implements ApiModel {
     }
 
     public void setPassport(String passport) {
-        this.passport = new SimpleStringProperty (passport);
+        this.passport = new SimpleStringProperty(passport);
     }
 
     public String getPhone() {
         return phone.get();
     }
 
-    public void setPhone(String phone) {
-        new SimpleStringProperty(phone);
+    public void setPhone(String phone) { this.phone = new SimpleStringProperty(phone);
     }
 
     @Override

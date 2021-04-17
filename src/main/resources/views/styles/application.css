@@ -10,10 +10,6 @@
     -fx-background-color: primary;
 }
 
-.message {
-    -fx-background-color: red;
-}
-
 
 .login-body {
     -fx-padding: 0 64 16 16;
@@ -251,4 +247,8 @@
     -fx-min-height: 0;
     -fx-pref-height: 0;
     -fx-max-height: 0;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: secondary;
 }

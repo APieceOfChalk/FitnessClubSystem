@@ -77,8 +77,8 @@ public class PlacesTbl extends AbstractController {
         } else {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("ОШИБКА");
-        alert.setHeaderText("Пользователи не выбраны");
-        alert.setContentText("Пожалуйста выберите пользователя");
+        alert.setHeaderText("Залы не выбраны");
+        alert.setContentText("Пожалуйста выберите зал");
 
         alert.showAndWait();
         }
@@ -147,7 +147,6 @@ public class PlacesTbl extends AbstractController {
 
     @FXML
     public void updateTable() throws IOException {
-        System.out.println("update");
         initTable();
     }
 
