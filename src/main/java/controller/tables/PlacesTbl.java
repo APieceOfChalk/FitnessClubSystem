@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
 import main.java.controller.Places;
+import main.java.controller.popups.PlacesAdd;
 import main.java.controller.popups.PlacesEdit;
 import main.java.utils.RestApi;
 
@@ -43,19 +44,18 @@ public class PlacesTbl extends AbstractController {
     }
 
     @FXML
-    public void addNew() {
-        PlacesEdit.showView();
+    private void handleNewPlace() {
+        PlacesAdd.showAddView();
     }
 
 
     @FXML
-    private void handleDeleteAction() throws IOException {
+    private void handleDeleteAction()  {
         int selectedIndex = placesTable.getSelectionModel().getSelectedIndex();
         System.out.println(selectedIndex);
         if (selectedIndex >= 0) {
             Places currentPlace = placesTable.getItems().get(selectedIndex);
             if (myApiSession.deletePlace(currentPlace)) {
-                initTable();
             }
 
         } else {
@@ -65,6 +65,22 @@ public class PlacesTbl extends AbstractController {
             alert.setContentText("Пожалуйста выберите зал");
 
             alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void editPlacesData() {
+        int selectedIndex = placesTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            Places buf = placesTable.getItems().get(selectedIndex);
+            PlacesEdit.showEditView(buf);
+        } else {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("ОШИБКА");
+        alert.setHeaderText("Пользователи не выбраны");
+        alert.setContentText("Пожалуйста выберите пользователя");
+
+        alert.showAndWait();
         }
     }
 
@@ -129,5 +145,10 @@ public class PlacesTbl extends AbstractController {
     }
 
 
+    @FXML
+    public void updateTable() throws IOException {
+        System.out.println("update");
+        initTable();
+    }
 
 }

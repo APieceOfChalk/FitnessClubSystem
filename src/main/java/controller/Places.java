@@ -18,6 +18,9 @@ public class Places implements ApiModel {
         this.name = new SimpleStringProperty(name);
     }
 
+    public Places() {
+    }
+
     public String getId() {
         return id.get();
     }

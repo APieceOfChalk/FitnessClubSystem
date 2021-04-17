@@ -11,9 +11,7 @@ import javafx.stage.StageStyle;
 import main.java.controller.Places;
 import main.java.utils.RestApi;
 
-
-
-public class PlacesEdit {
+public class PlacesAdd {
 
     @FXML
     private TextField name;
@@ -23,27 +21,24 @@ public class PlacesEdit {
     private Label message;
 
     private RestApi myApiSession = new RestApi();
-    private Places place;
-
-
+    //private Places place = new Places();
 
     @FXML
     private void handleCancel() {
         name.getScene().getWindow().hide();
     }
 
-    public static void showEditView(Places place) {
+    public static void showAddView() {
         try {
 
             Stage stage = new Stage(StageStyle.UNDECORATED);
             stage.initModality(Modality.APPLICATION_MODAL);
 
-            FXMLLoader loader = new FXMLLoader(PlacesEdit.class.getResource("/views/popups/PlacesEdit.fxml"));
+            FXMLLoader loader = new FXMLLoader(PlacesEdit.class.getResource("/views/popups/PlacesAdd.fxml"));
             stage.setScene(new Scene(loader.load()));
 
-            PlacesEdit controller = loader.getController();
-            controller.setPlace(place);
-
+            PlacesAdd controller = loader.getController();
+            controller.setTitle();
 
             stage.show();
 
@@ -51,23 +46,6 @@ public class PlacesEdit {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    private void handleOk() {
-        if (isInputValid()) {
-            place.setName(name.getText());
-            myApiSession.updatePlace(place);
-            name.getScene().getWindow().hide();
-        }
-    }
-
-    public void setPlace(Places place) {
-        this.place = place;
-        title.setText("Редактировать зал");
-
-        name.setText(place.getName());
-    }
-
 
     private boolean isInputValid() {
         String errorMessage = "";
@@ -84,5 +62,17 @@ public class PlacesEdit {
         }
     }
 
-}
+    @FXML
+    private void handleOk() {
+        if (isInputValid()) {
+            Places place = new Places();
+            place.setName(name.getText());
+            myApiSession.createPlace(place);
+            name.getScene().getWindow().hide();
+        }
+    }
 
+    public void setTitle() {
+        title.setText("Создать новый зал");
+    }
+}

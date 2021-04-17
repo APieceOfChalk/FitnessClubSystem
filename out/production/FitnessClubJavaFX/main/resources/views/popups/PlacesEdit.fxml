@@ -21,9 +21,9 @@
             <Label fx:id="title" styleClass="dialog-title" text="Редактирование" textFill="WHITE" />
             <VBox styleClass="dialog-message-box">
                <children>
-                  <Label fx:id="message" textFill="WHITE">
+                  <Label fx:id="message" alignment="CENTER" styleClass="dialog-message-box2" textFill="#e61c1c" VBox.vgrow="ALWAYS">
                      <font>
-                        <Font size="12.0" />
+                        <Font size="10.0" />
                      </font>
                   </Label>
                   <VBox styleClass="dialog-input-box">
@@ -40,7 +40,7 @@
             </VBox>
             <HBox>
                <children>
-                  <Button mnemonicParsing="false" styleClass="wid-120" text="Сохранить" />
+                  <Button fx:id="okBtn" mnemonicParsing="false" onMouseClicked="#handleOk" styleClass="wid-120" text="Сохранить" />
                   <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleCancel" onMouseClicked="#handleCancel" styleClass="wid-120" text="Отмена" />
                </children>
                <styleClass>

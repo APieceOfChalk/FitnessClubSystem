@@ -15,7 +15,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
-import main.java.controller.Clients;
 import main.java.controller.Subscriptions;
 import main.java.utils.RestApi;
 
