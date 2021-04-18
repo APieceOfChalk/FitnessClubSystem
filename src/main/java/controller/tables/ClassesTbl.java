@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
 import main.java.controller.Classes;
+import main.java.controller.popups.ClassesAdd;
+import main.java.controller.popups.ClassesEdit;
 import main.java.utils.RestApi;
 
 import java.io.IOException;
@@ -49,6 +51,11 @@ public class ClassesTbl extends AbstractController {
     }
 
     @FXML
+    private void handleNewClass() {
+        ClassesAdd.showAddView();
+    }
+
+    @FXML
     private void handleDeleteAction() throws IOException {
         int selectedIndex = classesTable.getSelectionModel().getSelectedIndex();
         System.out.println(selectedIndex);
@@ -58,6 +65,22 @@ public class ClassesTbl extends AbstractController {
                 initTable();
             }
 
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ОШИБКА");
+            alert.setHeaderText("Занятия не выбраны");
+            alert.setContentText("Пожалуйста выберите занятие");
+
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void editClassData() {
+        int selectedIndex = classesTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            Classes buf = classesTable.getItems().get(selectedIndex);
+            ClassesEdit.showEditView(buf);
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ОШИБКА");
@@ -142,5 +165,10 @@ public class ClassesTbl extends AbstractController {
         // 5. Add sorted (and filtered) data to the table.
         classesTable.setItems(sortedData);
 
+    }
+
+    @FXML
+    public void updateTable() throws IOException {
+        initTable();
     }
 }

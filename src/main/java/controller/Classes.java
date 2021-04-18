@@ -3,10 +3,11 @@ package main.java.controller;
 
 import com.google.gson.Gson;
 import javafx.beans.property.SimpleStringProperty;
+import main.java.controller.tables.dto.ActivitiesNested;
+import main.java.controller.tables.dto.area;
+import main.java.controller.tables.dto.trainer;
 import main.java.models.ApiModel;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Classes implements ApiModel {
 
@@ -18,8 +19,11 @@ public class Classes implements ApiModel {
     public Classes(String id, String name, String areaId, String trainerId) {
         this.id = new SimpleStringProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.areaId = new SimpleStringProperty (areaId);
+        this.areaId = new SimpleStringProperty(areaId);
         this.trainerId = new SimpleStringProperty(trainerId);
+    }
+
+    public Classes() {
     }
 
     public String getId() { return id.get(); }
@@ -49,17 +53,19 @@ public class Classes implements ApiModel {
     }
 
     public void setTrainerId(String trainerId) {
-        new SimpleStringProperty(trainerId);
+        this.trainerId = new SimpleStringProperty(trainerId);
     }
+
 
     @Override
     public String toJson() {
-        Map<String, String> map = new HashMap<>();
-        map.put("name", name.get());
-        map.put("area", areaId.get());
-        map.put("trainer", trainerId.get());
-
+        area area = new area(areaId.get());
+        trainer trainer = new trainer(trainerId.get());
+        ActivitiesNested nested = new ActivitiesNested(name.get(), area, trainer);
         Gson gson = new Gson();
-        return gson.toJson(map);
+
+
+        System.out.println(gson.toJson(nested));
+        return gson.toJson(nested);
     }
 }
