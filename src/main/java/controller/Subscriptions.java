@@ -3,6 +3,7 @@ package main.java.controller;
 
 import com.google.gson.Gson;
 import javafx.beans.property.SimpleStringProperty;
+import main.java.controller.tables.dto.*;
 import main.java.models.ApiModel;
 
 import java.util.HashMap;
@@ -22,6 +23,10 @@ public class Subscriptions implements ApiModel {
         this.activity = new SimpleStringProperty (activity);
         this.date = new SimpleStringProperty(date);
         this.price = new SimpleStringProperty(price);
+    }
+
+    public Subscriptions() {
+
     }
 
     public String getId() { return id.get(); }
@@ -51,7 +56,7 @@ public class Subscriptions implements ApiModel {
     }
 
     public void setDate(String date) {
-        new SimpleStringProperty(date);
+       this.date = new SimpleStringProperty(date);
     }
 
     public String getPrice() {
@@ -59,19 +64,17 @@ public class Subscriptions implements ApiModel {
     }
 
     public void setPrice(String price) {
-        new SimpleStringProperty(price);
+        this.price = new SimpleStringProperty(price);
     }
 
     @Override
     public String toJson() {
-        Map<String, String> map = new HashMap<>();
-        map.put("client", client.get());
-        map.put("activity", activity.get());
-        map.put("date", date.get());
-        map.put("price", price.get());
-
+        main.java.controller.tables.dto.client client1 = new client(client.get());
+        main.java.controller.tables.dto.activity activity1 = new activity(activity.get());
+        SubscriptionsNested nested = new SubscriptionsNested(client1, activity1, date.get(), price.get());
         Gson gson = new Gson();
-        return gson.toJson(map);
+
+        return gson.toJson(nested);
     }
 
 }

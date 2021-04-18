@@ -15,7 +15,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
+import main.java.controller.Classes;
 import main.java.controller.Subscriptions;
+import main.java.controller.popups.ClassesEdit;
+import main.java.controller.popups.SubscriptionsAdd;
+import main.java.controller.popups.SubscriptionsEdit;
 import main.java.utils.RestApi;
 
 import java.io.IOException;
@@ -47,6 +51,11 @@ public class SubscriptionsTbl extends AbstractController {
     }
 
     @FXML
+    private void handleNewSubscription() {
+        SubscriptionsAdd.showAddView();
+    }
+
+    @FXML
     private void handleDeleteAction() throws IOException {
         int selectedIndex = subscriptionsTable.getSelectionModel().getSelectedIndex();
         System.out.println(selectedIndex);
@@ -56,6 +65,22 @@ public class SubscriptionsTbl extends AbstractController {
                 initTable();
             }
 
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("ОШИБКА");
+            alert.setHeaderText("Абонементы не выбраны");
+            alert.setContentText("Пожалуйста выберите абонемент");
+
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void editSubscriptionData() {
+        int selectedIndex = subscriptionsTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            Subscriptions buf = subscriptionsTable.getItems().get(selectedIndex);
+            SubscriptionsEdit.showEditView(buf);
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ОШИБКА");
@@ -131,6 +156,11 @@ public class SubscriptionsTbl extends AbstractController {
         sortedData.comparatorProperty().bind(subscriptionsTable.comparatorProperty());
         subscriptionsTable.setItems(sortedData);
 
+    }
+
+    @FXML
+    public void updateTable() throws IOException {
+        initTable();
     }
 
 }

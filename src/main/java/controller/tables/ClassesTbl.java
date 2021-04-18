@@ -101,11 +101,11 @@ public class ClassesTbl extends AbstractController {
 
         JsonParser jp = new JsonParser();
         JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
-        JsonArray ArrayOfclasses = root.getAsJsonArray();
+        JsonArray ArrayOfClasses = root.getAsJsonArray();
 
 
         List<Classes> classes = new ArrayList<>();
-        for (JsonElement classesElement : ArrayOfclasses) {
+        for (JsonElement classesElement : ArrayOfClasses) {
             JsonObject classesObject = classesElement.getAsJsonObject();
 
             String id = classesObject.get("id").getAsString();

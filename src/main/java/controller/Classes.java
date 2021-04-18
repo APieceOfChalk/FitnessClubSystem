@@ -45,7 +45,7 @@ public class Classes implements ApiModel {
     }
 
     public void setAreaId(String areaId) {
-        this.areaId = new SimpleStringProperty (areaId);
+        this.areaId = new SimpleStringProperty(areaId);
     }
 
     public String getTrainerId() {
@@ -64,8 +64,6 @@ public class Classes implements ApiModel {
         ActivitiesNested nested = new ActivitiesNested(name.get(), area, trainer);
         Gson gson = new Gson();
 
-
-        System.out.println(gson.toJson(nested));
         return gson.toJson(nested);
     }
 }
