@@ -15,9 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
-import main.java.controller.Classes;
 import main.java.controller.Subscriptions;
-import main.java.controller.popups.ClassesEdit;
 import main.java.controller.popups.SubscriptionsAdd;
 import main.java.controller.popups.SubscriptionsEdit;
 import main.java.utils.RestApi;
@@ -161,6 +159,11 @@ public class SubscriptionsTbl extends AbstractController {
     @FXML
     public void updateTable() throws IOException {
         initTable();
+    }
+
+    @FXML
+    public void initChart() {
+        SubChart.showChart();
     }
 
 }

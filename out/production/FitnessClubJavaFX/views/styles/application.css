@@ -34,6 +34,26 @@
     -fx-text-fill: secondary-light;
 }
 
+.combo-box {
+    -fx-background-color: primary-light;
+    -fx-border-style: solid;
+    -fx-border-color: secondary;
+    -fx-text-fill: secondary-light;
+}
+
+.combo-box .arrow{
+    -fx-background-color: secondary;
+}
+
+.combo-box .list-cell{
+    -fx-background-color: primary-light;
+    -fx-text-fill: secondary-light;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: secondary;
+}
+
 .button:hover, .button:focused {
     -fx-background-color: secondary;
     -fx-text-fill: white;
@@ -251,4 +271,29 @@
 
 .table-row-cell:selected {
     -fx-background-color: secondary;
+}
+
+.chart-bar {
+    -fx-background-color: secondary;
+    -fx-border-color: secondary-light;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-title {
+    -fx-text-fill: secondary-light;
+}
+
+.chart-content {
+    -fx-text-fill: secondary-light;
+}
+
+.axis-label {
+    -fx-text-fill: secondary-light;
+}
+
+.axis {
+    -fx-text-fill: secondary-light;
 }

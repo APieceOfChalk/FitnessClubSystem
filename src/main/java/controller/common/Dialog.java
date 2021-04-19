@@ -25,6 +25,8 @@ public class Dialog {
 
     private Stage stage;
 
+    private ActionListener actionListener;
+
 
     @FXML
     private void cancel() {
@@ -33,6 +35,28 @@ public class Dialog {
 
     public void show() {
         stage.show();
+    }
+
+    private void attachEvents() {
+        cancelBtn.getScene().setOnKeyPressed(event -> {
+            if(event.getCode() == KeyCode.ENTER) {
+                if(cancelBtn.isFocused()) {
+                    cancel();
+                }
+
+                if(okBtn.isFocused()) {
+                    okAction();
+                }
+            }
+        });
+    }
+
+    @FXML
+    private void okAction() {
+        if(null != actionListener) {
+            cancel();
+            actionListener.doAction();
+        }
     }
 
     public static class DialogBuilder {
@@ -73,16 +97,13 @@ public class Dialog {
 
                 controller.title.setText(this.title);
                 controller.message.setText(this.message);
+                controller.actionListener = okActionListener;
 
-                if (okActionListener != null) {
-                    controller.okBtn.setOnAction(event -> {
-                        controller.cancel();
-                        okActionListener.doAction();
-                    });
-                } else {
+                if (null == okActionListener) {
                     controller.okBtn.setVisible(false);
                     controller.cancelBtn.setText("ОТМЕНА");
                 }
+                controller.attachEvents();
 
                 return controller;
 
