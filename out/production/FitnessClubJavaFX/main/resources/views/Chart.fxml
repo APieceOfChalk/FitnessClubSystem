@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="444.0" prefWidth="600.0" styleClass="dialog" stylesheets="@styles/application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.tables.SubChart">
+   <children>
+      <VBox>
+         <children>
+            <BarChart fx:id="SChart" prefHeight="400.0" prefWidth="600.0" title="Статистика занятий">
+              <xAxis>
+                <CategoryAxis label="Занятия " side="BOTTOM" tickLabelFill="#ced4da" fx:id="x" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="y" label="Количество абонементов" side="LEFT" tickLabelFill="#ced4da" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </VBox>
+      <VBox layoutX="17.0" layoutY="392.0">
+         <children>
+            <Label text="Маскимальное значение:" textFill="#ced4da" />
+            <HBox>
+               <children>
+                  <Label fx:id="act" textFill="#ced4da" />
+                  <Label fx:id="val" prefHeight="17.0" prefWidth="19.0" textFill="#ced4da" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="493.0" layoutY="396.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="28.0" prefWidth="94.0" stylesheets="@styles/application.css" text="Выход" />
+   </children>
+</AnchorPane>

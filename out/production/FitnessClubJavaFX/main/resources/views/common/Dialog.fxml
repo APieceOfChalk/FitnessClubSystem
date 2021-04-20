@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="dialog" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="main.java.controller.common.Dialog">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="dialog" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controller.common.Dialog">
    <children>
       <VBox styleClass="dialog-icon">
          <children>
@@ -29,7 +28,7 @@
             </HBox>
             <HBox>
                <children>
-                  <Button fx:id="okBtn" mnemonicParsing="false" text="Подтвердить">
+                  <Button fx:id="okBtn" mnemonicParsing="false" onAction="#okAction" text="Подтвердить">
                      <styleClass>
                         <String fx:value="wid-120" />
                         <String fx:value="button" />

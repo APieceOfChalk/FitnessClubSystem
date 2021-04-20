@@ -17,6 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import main.java.controller.exception.AppException;
 import main.java.models.Account;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -68,23 +69,37 @@ public class LoginController implements Initializable {
     private void login() {
         try {
 
-            String loginId = "root";
-            String passwordId = "0102";
+            String sUrl = "http://localhost:8080/users";
+            URL url = new URL(sUrl);
+            URLConnection request = url.openConnection();
+            request.connect();
 
-            if (loginField.getText().equals(loginId) && passwordField.getText().equals(passwordId)) {
 
-                //открытие приложения
-                MainFrame.show();
+            JsonParser jp = new JsonParser();
+            JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+            JsonArray array = root.getAsJsonArray();
+            for (JsonElement element : array) {
+                JsonObject object = element.getAsJsonObject();
+                String loginId = object.get("login").getAsString();
+                String passwordId = (object.get("password").getAsString());
 
-                //закрытие логина
-                cancel();
-            } if (loginField.getText().isEmpty()) {
-                throw new AppException("Пожалуйста, введите логин.");
-            } if (passwordField.getText().isEmpty()) {
-                throw new AppException("Пожалуйста, введите пароль.");
-            } else {
-                throw new AppException("Неверный логин или пароль.");
+
+                if (loginField.getText().equals(loginId) && DigestUtils.shaHex(passwordField.getText()).equals((passwordId))) {
+
+                    //открытие приложения
+                    MainFrame.show();
+
+                    //закрытие логина
+                    cancel();
+                } if (loginField.getText().isEmpty()) {
+                    throw new AppException("Пожалуйста, введите логин.");
+                } if (passwordField.getText().isEmpty()) {
+                    throw new AppException("Пожалуйста, введите пароль.");
+                } else {
+                    throw new AppException("Неверный логин или пароль.");
+                }
             }
+
         }
         catch (AppException e) {
             message.setText(e.getMessage());
