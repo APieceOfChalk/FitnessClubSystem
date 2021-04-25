@@ -6,17 +6,41 @@ import javafx.beans.property.SimpleStringProperty;
 import main.java.controller.tables.dto.*;
 import main.java.models.ApiModel;
 
-import java.util.HashMap;
-import java.util.Map;
 
+/**
+ * Модель абонементов.
+ */
 public class Subscriptions implements ApiModel {
 
+    /**
+     * Id.
+     */
     SimpleStringProperty id;
+    /**
+     * Клиент.
+     */
     SimpleStringProperty client;
+    /**
+     * Занятие.
+     */
     SimpleStringProperty activity;
+    /**
+     * Срок.
+     */
     SimpleStringProperty date;
+    /**
+     * Цена.
+     */
     SimpleStringProperty price;
 
+    /**
+     * Конструктор - создание нового объекта с определенными значениями
+     * @param id - id
+     * @param client - клиент
+     * @param activity - занятие
+     * @param date - срок
+     * @param price - цена
+     */
     public Subscriptions(String id, String client, String activity, String date, String price) {
         this.id = new SimpleStringProperty(id);
         this.client = new SimpleStringProperty(client);
@@ -28,6 +52,10 @@ public class Subscriptions implements ApiModel {
     public Subscriptions() {
 
     }
+
+    /**
+     * И далее идут геттеры и сеттеры, не отчающиеся от тех, которые присутствуют в сервере.
+     */
 
     public String getId() { return id.get(); }
 
@@ -67,6 +95,11 @@ public class Subscriptions implements ApiModel {
         this.price = new SimpleStringProperty(price);
     }
 
+
+    /**
+     * Переводит все переданные параметры в json.
+     * @return объект в Json
+     */
     @Override
     public String toJson() {
         main.java.controller.tables.dto.client client1 = new client(client.get());

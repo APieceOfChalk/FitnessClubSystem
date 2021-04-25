@@ -25,16 +25,27 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Контроллер для таблицы залов.
+ */
 public class PlacesTbl extends AbstractController {
 
     private RestApi myApiSession = new RestApi();
 
+    /**
+     * Таблица залов.
+     */
     @FXML
     private TableView<Places> placesTable;
+    /**
+     * Поиск.
+     */
     @FXML
     private TextField searchField;
 
-
+    /**
+     * Колонки:
+     */
     @FXML private TableColumn<Places, String> id;
     @FXML private TableColumn<Places, String> name;
 
@@ -43,12 +54,19 @@ public class PlacesTbl extends AbstractController {
         initTable();
     }
 
+    /**
+     * Метод, который открывает форму для добавления зала.
+     */
     @FXML
     private void handleNewPlace() {
         PlacesAdd.showAddView();
     }
 
 
+    /**
+     * Удаляет выбранную строку.
+     * @throws IOException если нет подключения к серверу.
+     */
     @FXML
     private void handleDeleteAction()  {
         int selectedIndex = placesTable.getSelectionModel().getSelectedIndex();
@@ -68,6 +86,9 @@ public class PlacesTbl extends AbstractController {
         }
     }
 
+    /**
+     * Метод, который окрывает форму изменения зала, если строка выделена.
+     */
     @FXML
     private void editPlacesData() {
         int selectedIndex = placesTable.getSelectionModel().getSelectedIndex();
@@ -85,6 +106,10 @@ public class PlacesTbl extends AbstractController {
     }
 
 
+    /**
+     * Парсер json в таблицу.
+     * @throws IOException если нет подключения к серверу.
+     */
     private void initTable() throws IOException {
 
         String sUrl = "http://localhost:8080/areas";
@@ -145,6 +170,10 @@ public class PlacesTbl extends AbstractController {
     }
 
 
+    /**
+     * Обновление таблицы.
+     * @throws IOException если нет подключения к серверу.
+     */
     @FXML
     public void updateTable() throws IOException {
         initTable();

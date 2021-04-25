@@ -28,21 +28,29 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Контроллер для таблицы занятий.
+ */
 public class ClassesTbl extends AbstractController {
 
+    /**
+     * Таблица занятий.
+     */
     @FXML
     private TableView<Classes> classesTable;
+    /**
+     * Поиск.
+     */
     @FXML
     private TextField searchField;
 
-    @FXML
-    private TableColumn<Classes, String> id;
-    @FXML
-    private TableColumn<Classes, String> name;
-    @FXML
-    private TableColumn<Classes, String> trainerId;
-    @FXML
-    private TableColumn<Classes, String> areaId;
+    /**
+     * Колонки:
+     */
+    @FXML private TableColumn<Classes, String> id;
+    @FXML private TableColumn<Classes, String> name;
+    @FXML private TableColumn<Classes, String> trainerId;
+    @FXML private TableColumn<Classes, String> areaId;
 
     private RestApi myApiSession = new RestApi();
 
@@ -50,11 +58,18 @@ public class ClassesTbl extends AbstractController {
         initTable();
     }
 
+    /**
+     * Метод, который открывает форму для добавления занятия.
+     */
     @FXML
     private void handleNewClass() {
         ClassesAdd.showAddView();
     }
 
+    /**
+     * Удаляет выбранную строку.
+     * @throws IOException если нет подключения к серверу.
+     */
     @FXML
     private void handleDeleteAction() throws IOException {
         int selectedIndex = classesTable.getSelectionModel().getSelectedIndex();
@@ -75,6 +90,9 @@ public class ClassesTbl extends AbstractController {
         }
     }
 
+    /**
+     * Метод, который окрывает форму изменения занятия, если строка выделена.
+     */
     @FXML
     private void editClassData() {
         int selectedIndex = classesTable.getSelectionModel().getSelectedIndex();
@@ -91,6 +109,10 @@ public class ClassesTbl extends AbstractController {
         }
     }
 
+    /**
+     * Парсер json в таблицу.
+     * @throws IOException если нет подключения к серверу.
+     */
     private void initTable() throws IOException {
 
         String sUrl = "http://localhost:8080/activities";
@@ -129,44 +151,41 @@ public class ClassesTbl extends AbstractController {
 
         FilteredList<Classes> filteredData = new FilteredList<>(observableList, p -> true);
 
-        // 2. Set the filter Predicate whenever the filter changes.
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(myObject -> {
-                // If filter text is empty, display all persons.
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
 
-                // Compare first name and last name field in your object with filter.
                 String lowerCaseFilter = newValue.toLowerCase();
 
                 if (String.valueOf(myObject.getName()).toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                    // Filter matches first name.
 
                 } else if (String.valueOf(myObject.getTrainerId()).toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches last name.
+                    return true;
                 } else if (String.valueOf(myObject.getAreaId()).toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches last name.
+                    return true;
                 } else if (String.valueOf(myObject.getId()).toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches last name.
+                    return true;
                 }
 
 
-                return false; // Does not match.
+                return false;
             });
         });
 
-        // 3. Wrap the FilteredList in a SortedList.
         SortedList<Classes> sortedData = new SortedList<>(filteredData);
 
-        // 4. Bind the SortedList comparator to the TableView comparator.
         sortedData.comparatorProperty().bind(classesTable.comparatorProperty());
-        // 5. Add sorted (and filtered) data to the table.
         classesTable.setItems(sortedData);
 
     }
 
+    /**
+     * Обновление таблицы.
+     * @throws IOException если нет подключения к серверу.
+     */
     @FXML
     public void updateTable() throws IOException {
         initTable();

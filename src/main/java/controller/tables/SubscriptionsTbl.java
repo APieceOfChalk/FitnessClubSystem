@@ -28,13 +28,25 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Контроллер для таблицы абонементов.
+ */
 public class SubscriptionsTbl extends AbstractController {
 
+    /**
+     * Таблица абонементов.
+     */
     @FXML
     private TableView<Subscriptions> subscriptionsTable;
+    /**
+     * Поиск.
+     */
     @FXML
     private TextField searchField;
 
+    /**
+     * Колонки:
+     */
     @FXML private TableColumn<Subscriptions, String> id;
     @FXML private TableColumn<Subscriptions, String> client;
     @FXML private TableColumn<Subscriptions, String> activity;
@@ -48,11 +60,18 @@ public class SubscriptionsTbl extends AbstractController {
         initTable();
     }
 
+    /**
+     * Метод, который открывает форму для добавления абонемента.
+     */
     @FXML
     private void handleNewSubscription() {
         SubscriptionsAdd.showAddView();
     }
 
+    /**
+     * Удаляет выбранную строку.
+     * @throws IOException если нет подключения к серверу.
+     */
     @FXML
     private void handleDeleteAction() throws IOException {
         int selectedIndex = subscriptionsTable.getSelectionModel().getSelectedIndex();
@@ -73,6 +92,9 @@ public class SubscriptionsTbl extends AbstractController {
         }
     }
 
+    /**
+     * Метод, который окрывает форму изменения абонемента, если строка выделена.
+     */
     @FXML
     private void editSubscriptionData() {
         int selectedIndex = subscriptionsTable.getSelectionModel().getSelectedIndex();
@@ -89,6 +111,10 @@ public class SubscriptionsTbl extends AbstractController {
         }
     }
 
+    /**
+     * Парсер json в таблицу.
+     * @throws IOException если нет подключения к серверу.
+     */
     private void initTable() throws IOException {
 
         String sUrl = "http://localhost:8080/subscriptions";
@@ -156,11 +182,18 @@ public class SubscriptionsTbl extends AbstractController {
 
     }
 
+    /**
+     * Обновление таблицы.
+     * @throws IOException если нет подключения к серверу.
+     */
     @FXML
     public void updateTable() throws IOException {
         initTable();
     }
 
+    /**
+     * Показывает диаграмму.
+     */
     @FXML
     public void initChart() {
         SubChart.showChart();

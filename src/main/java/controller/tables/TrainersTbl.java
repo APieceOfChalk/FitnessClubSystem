@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.java.controller.AbstractController;
 import main.java.controller.Trainers;
-import main.java.controller.popups.ClientsAdd;
 import main.java.controller.popups.TrainersAdd;
 import main.java.controller.popups.TrainersEdit;
 import main.java.utils.RestApi;
@@ -26,15 +25,27 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Контроллер для таблицы тренеров.
+ */
 public class TrainersTbl extends AbstractController {
 
     private RestApi myApiSession = new RestApi();
 
+    /**
+     * Таблица тренеров.
+     */
     @FXML
     private TableView<Trainers> trainersTable;
+    /**
+     * Поиск.
+     */
     @FXML
     private TextField searchField;
 
+    /**
+     * Колонки:
+     */
     @FXML private TableColumn<Trainers, String> id;
     @FXML private TableColumn<Trainers, String> name;
     @FXML private TableColumn<Trainers, String> passport;
@@ -46,11 +57,18 @@ public class TrainersTbl extends AbstractController {
         initTable();
     }
 
+    /**
+     * Метод, который открывает форму для добавления тренера.
+     */
     @FXML
     private void handleNewTrainer() {
         TrainersAdd.showAddView();
     }
 
+    /**
+     * Удаляет выбранную строку.
+     * @throws IOException если нет подключения к серверу.
+     */
     @FXML
     private void handleDeleteAction() throws IOException {
         int selectedIndex = trainersTable.getSelectionModel().getSelectedIndex();
@@ -71,6 +89,9 @@ public class TrainersTbl extends AbstractController {
         }
     }
 
+    /**
+     * Метод, который окрывает форму изменения тренера, если строка выделена.
+     */
     @FXML
     private void editTrainersData() {
         int selectedIndex = trainersTable.getSelectionModel().getSelectedIndex();
@@ -87,6 +108,10 @@ public class TrainersTbl extends AbstractController {
         }
     }
 
+    /**
+     * Парсер json в таблицу.
+     * @throws IOException если нет подключения к серверу.
+     */
     private void initTable() throws IOException {
 
         String sUrl = "http://localhost:8080/trainers";
@@ -152,6 +177,10 @@ public class TrainersTbl extends AbstractController {
 
     }
 
+    /**
+     * Обновление таблицы.
+     * @throws IOException если нет подключения к серверу.
+     */
     @FXML
     public void updateTable() throws IOException {
         initTable();

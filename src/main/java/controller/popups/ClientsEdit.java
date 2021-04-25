@@ -9,16 +9,26 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.java.controller.Clients;
-import main.java.controller.Places;
 import main.java.utils.RestApi;
 
-
+/**
+ * Контроллер для формы изменения клиента.
+ */
 public class ClientsEdit {
 
+    /**
+     * ФИО.
+     */
     @FXML
     private TextField name;
+    /**
+     * Паспортные данные.
+     */
     @FXML
     private TextField passport;
+    /**
+     * Телефон.
+     */
     @FXML
     private TextField phone;
     @FXML
@@ -29,13 +39,17 @@ public class ClientsEdit {
     private RestApi myApiSession = new RestApi();
     private Clients client;
 
-
-
+    /**
+     * Выход из окна.
+     */
     @FXML
     private void handleCancel() {
         name.getScene().getWindow().hide();
     }
 
+    /**
+     * Открытие окна.
+     */
     public static void showEditView(Clients client) {
         try {
 
@@ -56,6 +70,9 @@ public class ClientsEdit {
         }
     }
 
+    /**
+     * Сохранение изменений на нажатие кнопки ОК.
+     */
     @FXML
     private void handleOk() {
         if (isInputValid()) {
@@ -67,6 +84,10 @@ public class ClientsEdit {
         }
     }
 
+    /**
+     * Автозаполнение предыдущих занчений.
+     * @param client - предыдущий клиент.
+     */
     public void setClient(Clients client) {
         this.client = client;
         title.setText("Редактировать клиента");
@@ -76,7 +97,10 @@ public class ClientsEdit {
         phone.setText(client.getPhone());
     }
 
-
+    /**
+     * Проверка на корректность введенных данных.
+     * @return сообщение об ошибке.
+     */
     private boolean isInputValid() {
         String errorMessage = "";
         if (name.getText() == null || name.getText().length() == 0) {

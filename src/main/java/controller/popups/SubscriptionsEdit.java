@@ -29,14 +29,29 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Контроллер для формы изменения абонемента.
+ */
 public class SubscriptionsEdit {
 
+    /**
+     * Выбор клиента.
+     */
     @FXML
     private ComboBox<Clients> clientsComboBox;
+    /**
+     * Выбор занятия.
+     */
     @FXML
     private ComboBox<Classes> activitiesComboBox;
+    /**
+     * Срок.
+     */
     @FXML
     private TextField dateField;
+    /**
+     * Цена.
+     */
     @FXML
     private TextField priceField;
     @FXML
@@ -47,11 +62,17 @@ public class SubscriptionsEdit {
     private RestApi myApiSession = new RestApi();
     private Subscriptions subscription;
 
+    /**
+     * Выход из окна.
+     */
     @FXML
     private void handleCancel() {
         clientsComboBox.getScene().getWindow().hide();
     }
 
+    /**
+     * Открытие окна.
+     */
     public static void showEditView(Subscriptions subscription) {
         try {
 
@@ -71,6 +92,10 @@ public class SubscriptionsEdit {
         }
     }
 
+    /**
+     * Заполнение ComboBox клиентами и занятиями.
+     * @throws IOException если нет подключения к серверу.
+     */
     public void initialize() throws IOException {
         String cUrl = "http://localhost:8080/clients";
         URL url = new URL(cUrl);
@@ -158,6 +183,10 @@ public class SubscriptionsEdit {
 
     }
 
+    /**
+     * Автозаполнение предыдущих занчений (кроме ComboBox).
+     * @param subscription - предыдущий абонемент.
+     */
     public void setSubscription(Subscriptions subscription) {
         this.subscription = subscription;
         title.setText("Редактировать абонемент");
@@ -166,6 +195,10 @@ public class SubscriptionsEdit {
         priceField.setText(subscription.getPrice());
     }
 
+    /**
+     * Проверка на корректность введенных данных.
+     * @return сообщение об ошибке.
+     */
     private boolean isInputValid() {
         String errorMessage = "";
         if (dateField.getText() == null || dateField.getText().length() == 0) {
@@ -190,6 +223,9 @@ public class SubscriptionsEdit {
         }
     }
 
+    /**
+     * Сохранение изменений на нажатие кнопки ОК.
+     */
     @FXML
     private void handleOk() {
         if (isInputValid()) {

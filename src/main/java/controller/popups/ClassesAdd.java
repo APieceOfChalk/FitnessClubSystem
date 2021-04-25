@@ -29,12 +29,24 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Контроллер для формы добавления занятия.
+ */
 public class ClassesAdd {
 
+    /**
+     * Поле для названия занятия.
+     */
     @FXML
     private TextField name;
+    /**
+     * Выбор тренера.
+     */
     @FXML
     private ComboBox<Trainers> trainersComboBox;
+    /**
+     * Выбор зала.
+     */
     @FXML
     private ComboBox<Places> placesComboBox;
     @FXML
@@ -44,11 +56,18 @@ public class ClassesAdd {
 
     private RestApi myApiSession = new RestApi();
 
+    /**
+     * Выход из окна.
+     */
     @FXML
     private void handleCancel() {
         name.getScene().getWindow().hide();
     }
 
+    /**
+     * Заполнение ComboBox тренерами и залами.
+     * @throws IOException если нет подключения к серверу.
+     */
     public void initialize() throws IOException {
         String tUrl = "http://localhost:8080/trainers";
         URL trurl = new URL(tUrl);
@@ -136,6 +155,9 @@ public class ClassesAdd {
     }
 
 
+    /**
+     * Открытие окна.
+     */
     public static void showAddView() {
         try {
 
@@ -155,6 +177,10 @@ public class ClassesAdd {
         }
     }
 
+    /**
+     * Проверка на корректность введенных данных.
+     * @return сообщение об ошибке.
+     */
     private boolean isInputValid() {
         String errorMessage = "";
         if (name.getText() == null || name.getText().length() == 0) {
@@ -170,13 +196,15 @@ public class ClassesAdd {
         if (errorMessage.length() == 0) {
             return true;
         } else {
-
             message.setText(errorMessage);
             return false;
         }
     }
 
 
+    /**
+     * Создание нового занятия на нажатие кнопки ОК.
+     */
     @FXML
     private void handleOk() {
         if (isInputValid()) {
@@ -194,6 +222,9 @@ public class ClassesAdd {
         }
     }
 
+    /**
+     * Название формы.
+     */
     public void setTitle() {
         title.setText("Создать новое занятие");
     }

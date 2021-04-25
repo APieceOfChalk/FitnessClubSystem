@@ -28,7 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
+/**
+ * Контроллер для формы логина и пароля
+ */
 public class LoginController implements Initializable {
 
 
@@ -52,6 +54,9 @@ public class LoginController implements Initializable {
 
     }
 
+    /**
+     * Метод для выаолнения определенного действия в зависимости от нажатой кнопки
+     */
     private void attachEvent() {
         loginField.getScene().setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -65,6 +70,10 @@ public class LoginController implements Initializable {
         });
     }
 
+    /**
+     * Метод для логина, где мы подключаемся к url, находим, есть ли такой пользователь и впускаем или не впускаем пользователя в приложение.
+     * Работает только с одним пользователем в базе данных, с админом!
+     */
     @FXML
     private void login() {
         try {
@@ -110,11 +119,17 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * Выход из приложения.
+     */
     @FXML
     private void cancel() {
         loginBtn.getScene().getWindow().hide();
     }
 
+    /**
+     * Загрузка страницы логина
+     */
     public static void loadView(Stage stage) {
 
         try {

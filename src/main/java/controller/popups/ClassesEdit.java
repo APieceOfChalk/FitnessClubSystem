@@ -29,13 +29,24 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Контроллер для формы изменения занятия.
+ */
 public class ClassesEdit {
 
+    /**
+     * Поле для названия занятия.
+     */
     @FXML
     private TextField name;
+    /**
+     * Выбор тренера.
+     */
     @FXML
     private ComboBox<Trainers> trainersComboBox;
+    /**
+     * Выбор зала.
+     */
     @FXML
     private ComboBox<Places> placesComboBox;
     @FXML
@@ -47,11 +58,17 @@ public class ClassesEdit {
     private Classes class_;
 
 
+    /**
+     * Выход из окна.
+     */
     @FXML
     private void handleCancel() {
         name.getScene().getWindow().hide();
     }
 
+    /**
+     * Открытие окна.
+     */
     public static void showEditView(Classes class_) {
         try {
 
@@ -72,6 +89,9 @@ public class ClassesEdit {
         }
     }
 
+    /**
+     * Сохранение изменений на нажатие кнопки ОК.
+     */
     @FXML
     private void handleOk() {
         if (isInputValid()) {
@@ -88,6 +108,10 @@ public class ClassesEdit {
         }
     }
 
+    /**
+     * Автозаполнение предыдущих занчений (кроме ComboBox).
+     * @param class_ - предыдущее занятие.
+     */
     public void setClass(Classes class_) {
         this.class_ = class_;
         title.setText("Редактировать занятие");
@@ -96,6 +120,10 @@ public class ClassesEdit {
     }
 
 
+    /**
+     * Проверка на корректность введенных данных.
+     * @return сообщение об ошибке.
+     */
     private boolean isInputValid() {
         String errorMessage = "";
         if (name.getText() == null || name.getText().length() == 0) {
@@ -116,6 +144,10 @@ public class ClassesEdit {
         }
     }
 
+    /**
+     * Заполнение ComboBox тренерами и залами.
+     * @throws IOException если нет подключения к серверу.
+     */
     public void initialize() throws IOException {
         String tUrl = "http://localhost:8080/trainers";
         URL trurl = new URL(tUrl);

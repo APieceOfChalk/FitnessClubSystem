@@ -28,13 +28,25 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Контроллер для таблицы клиентов.
+ */
 public class ClientsTbl extends AbstractController {
 
+    /**
+     * Таблица клиентов.
+     */
     @FXML
     private TableView<Clients> clientsTable;
+    /**
+     * Поиск.
+     */
     @FXML
     private TextField searchField;
 
+    /**
+     * Колонки:
+     */
     @FXML private TableColumn<Clients, String> id;
     @FXML private TableColumn<Clients, String> name;
     @FXML private TableColumn<Clients, String> passport;
@@ -46,11 +58,18 @@ public class ClientsTbl extends AbstractController {
         initTable();
     }
 
+    /**
+     * Метод, который открывает форму для добавления клиента.
+     */
     @FXML
     private void handleNewClient() {
         ClientsAdd.showAddView();
     }
 
+    /**
+     * Удаляет выбранную строку.
+     * @throws IOException если нет подключения к серверу.
+     */
     @FXML
     private void handleDeleteAction() {
         int selectedIndex = clientsTable.getSelectionModel().getSelectedIndex();
@@ -70,6 +89,9 @@ public class ClientsTbl extends AbstractController {
         }
     }
 
+    /**
+     * Метод, который окрывает форму изменения клиента, если строка выделена.
+     */
     @FXML
     private void editClientsData() {
         int selectedIndex = clientsTable.getSelectionModel().getSelectedIndex();
@@ -86,6 +108,10 @@ public class ClientsTbl extends AbstractController {
         }
     }
 
+    /**
+     * Парсер json в таблицу.
+     * @throws IOException если нет подключения к серверу.
+     */
     private void initTable() throws IOException {
 
         String sUrl = "http://localhost:8080/clients";
@@ -149,6 +175,10 @@ public class ClientsTbl extends AbstractController {
 
     }
 
+    /**
+     * Обновление таблицы.
+     * @throws IOException если нет подключения к серверу.
+     */
     @FXML
     public void updateTable() throws IOException {
         initTable();

@@ -1,5 +1,8 @@
 package main.java.controller.tables.dto;
 
+/**
+ * Вспомогательный класс, чтобы сделать сложный json.
+ */
 public class SubscriptionsNested {
     public activity activity;
     public client client;

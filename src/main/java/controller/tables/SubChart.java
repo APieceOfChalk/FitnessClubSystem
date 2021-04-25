@@ -8,15 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -30,6 +27,9 @@ import java.util.stream.Collectors;
 
 public class SubChart {
 
+    /**
+     * Диаграмма.
+     */
     @FXML
     private BarChart<String, Integer> SChart;
     @FXML
@@ -38,6 +38,9 @@ public class SubChart {
     private Label val;
 
 
+    /**
+     * Открытие окна с диаграммой.
+     */
     public static void showChart() {
         try {
 
@@ -56,11 +59,18 @@ public class SubChart {
         }
     }
 
+    /**
+     * Выход из окна.
+     */
     @FXML
     private void handleExit() {
         SChart.getScene().getWindow().hide();
     }
 
+    /**
+     * Заполнение диаграммы и максимального значения.
+     * @throws IOException если нет подключения к серверу.
+     */
     public void initialize() throws IOException {
         String sUrl = "http://localhost:8080/subscriptions";
         URL url = new URL(sUrl);

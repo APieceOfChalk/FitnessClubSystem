@@ -11,12 +11,24 @@ import javafx.stage.StageStyle;
 import main.java.controller.Clients;
 import main.java.utils.RestApi;
 
+/**
+ * Контроллер для формы добавления клиента.
+ */
 public class ClientsAdd {
 
+    /**
+     * ФИО.
+     */
     @FXML
     private TextField name;
+    /**
+     * Паспортные данные.
+     */
     @FXML
     private TextField passport;
+    /**
+     * Телефон.
+     */
     @FXML
     private TextField phone;
     @FXML
@@ -26,11 +38,17 @@ public class ClientsAdd {
 
     private RestApi myApiSession = new RestApi();
 
+    /**
+     * Выход из окна.
+     */
     @FXML
     private void handleCancel() {
         name.getScene().getWindow().hide();
     }
 
+    /**
+     * Открытие окна.
+     */
     public static void showAddView() {
         try {
 
@@ -50,6 +68,10 @@ public class ClientsAdd {
         }
     }
 
+    /**
+     * Проверка на корректность введенных данных.
+     * @return сообщение об ошибке.
+     */
     private boolean isInputValid() {
         String errorMessage = "";
         if (name.getText() == null || name.getText().length() == 0) {
@@ -71,6 +93,9 @@ public class ClientsAdd {
         }
     }
 
+    /**
+     * Создание нового клиента на нажатие кнопки ОК.
+     */
     @FXML
     private void handleOk() {
         if (isInputValid()) {
@@ -83,6 +108,9 @@ public class ClientsAdd {
         }
     }
 
+    /**
+     * Название формы.
+     */
     public void setTitle() {
         title.setText("Создать нового клиента");
     }

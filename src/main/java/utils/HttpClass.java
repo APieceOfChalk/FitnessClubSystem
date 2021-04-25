@@ -6,26 +6,17 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Класс, обрабатывающий HTTP запросы.
+ */
 public class HttpClass {
-    public static String GetRequest(String urlString) {
-        try {
-            URL url = new URL(urlString);
-            URLConnection conn = url.openConnection();
 
-            StringBuilder sb = new StringBuilder();
-            InputStream is = new BufferedInputStream(conn.getInputStream());
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String inputLine = "";
-            while ((inputLine = br.readLine()) != null) {
-                sb.append(inputLine);
-            }
-            return sb.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
+    /**
+     * Метод, обрабатывающий POST запрос.
+     * @param urlString - url, к которой подключаемся
+     * @param jsonString - запрос, который отправляем
+     */
     public static String PostRequest(String urlString, String jsonString) {
 
         try {
@@ -59,6 +50,10 @@ public class HttpClass {
         }
     }
 
+    /**
+     * Метод, обрабатывающий DELETE запрос.
+     * @param urlString - url, к которой подключаемся
+     */
     public static boolean DeleteRequest(String urlString) {
         try {
 
@@ -77,6 +72,11 @@ public class HttpClass {
         }
     }
 
+    /**
+     * Метод, обрабатывающий PUT запрос.
+     * @param urlString - url, к которой подключаемся
+     * @param jsonString - запрос, который отправляем
+     */
     public static String PutRequest(String urlString, String jsonString) {
         try {
             URL url = new URL(urlString);

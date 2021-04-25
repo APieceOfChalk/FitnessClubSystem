@@ -8,14 +8,35 @@ import main.java.controller.tables.dto.area;
 import main.java.controller.tables.dto.trainer;
 import main.java.models.ApiModel;
 
-
+/**
+ * Модель занятий.
+ */
 public class Classes implements ApiModel {
 
+    /**
+     * Id.
+     */
     SimpleStringProperty id;
+    /**
+     * Название занятия.
+     */
     SimpleStringProperty name;
+    /**
+     * Тренер, ведущий это занятие.
+     */
     SimpleStringProperty areaId;
+    /**
+     * Зал, в котором ведется занятие.
+     */
     SimpleStringProperty trainerId;
 
+    /**
+     * Конструктор - создание нового объекта с определенными значениями
+     * @param id - id
+     * @param name - название
+     * @param trainerId - тренер
+     * @param areaId - зал
+     */
     public Classes(String id, String name, String areaId, String trainerId) {
         this.id = new SimpleStringProperty(id);
         this.name = new SimpleStringProperty(name);
@@ -25,6 +46,10 @@ public class Classes implements ApiModel {
 
     public Classes() {
     }
+
+    /**
+     * И далее идут геттеры и сеттеры, не отчающиеся от тех, которые присутствуют в сервере.
+     */
 
     public String getId() { return id.get(); }
 
@@ -57,6 +82,10 @@ public class Classes implements ApiModel {
     }
 
 
+    /**
+     * Переводит все переданные параметры в json.
+     * @return объект в Json
+     */
     @Override
     public String toJson() {
         area area = new area(areaId.get());

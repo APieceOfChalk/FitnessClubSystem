@@ -10,7 +10,9 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-
+/**
+ * Диалоговое окно о выходе из приложения.
+ */
 public class Dialog {
 
     @FXML
@@ -27,16 +29,24 @@ public class Dialog {
 
     private ActionListener actionListener;
 
-
+    /**
+     * Выход из окна.
+     */
     @FXML
     private void cancel() {
         okBtn.getScene().getWindow().hide();
     }
 
+    /**
+     * Открытие окна.
+     */
     public void show() {
         stage.show();
     }
 
+    /**
+     * Нажатие кнопок.
+     */
     private void attachEvents() {
         cancelBtn.getScene().setOnKeyPressed(event -> {
             if(event.getCode() == KeyCode.ENTER) {
@@ -51,6 +61,9 @@ public class Dialog {
         });
     }
 
+    /**
+     * Выход из приложения.
+     */
     @FXML
     private void okAction() {
         if(null != actionListener) {
@@ -59,6 +72,9 @@ public class Dialog {
         }
     }
 
+    /**
+     * Создание диалога.
+     */
     public static class DialogBuilder {
 
         private String title;
@@ -84,6 +100,9 @@ public class Dialog {
             return this;
         }
 
+        /**
+         * Показ окна.
+         */
         public Dialog build() {
             try {
 

@@ -12,9 +12,14 @@ import main.java.controller.Places;
 import main.java.utils.RestApi;
 
 
-
+/**
+ * Контроллер для формы изменения зала.
+ */
 public class PlacesEdit {
 
+    /**
+     * Название зала.
+     */
     @FXML
     private TextField name;
     @FXML
@@ -25,13 +30,17 @@ public class PlacesEdit {
     private RestApi myApiSession = new RestApi();
     private Places place;
 
-
-
+    /**
+     * Выход из окна.
+     */
     @FXML
     private void handleCancel() {
         name.getScene().getWindow().hide();
     }
 
+    /**
+     * Открытие окна.
+     */
     public static void showEditView(Places place) {
         try {
 
@@ -52,6 +61,9 @@ public class PlacesEdit {
         }
     }
 
+    /**
+     * Сохранение изменений на нажатие кнопки ОК.
+     */
     @FXML
     private void handleOk() {
         if (isInputValid()) {
@@ -61,6 +73,10 @@ public class PlacesEdit {
         }
     }
 
+    /**
+     * Автозаполнение предыдущих занчений.
+     * @param place - предыдущий зал.
+     */
     public void setPlace(Places place) {
         this.place = place;
         title.setText("Редактировать зал");
@@ -68,7 +84,10 @@ public class PlacesEdit {
         name.setText(place.getName());
     }
 
-
+    /**
+     * Проверка на корректность введенных данных.
+     * @return сообщение об ошибке.
+     */
     private boolean isInputValid() {
         String errorMessage = "";
         if (name.getText() == null || name.getText().length() == 0) {

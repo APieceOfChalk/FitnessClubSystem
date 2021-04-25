@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -13,9 +15,18 @@
             <Label styleClass="title" text="Об авторе" textFill="WHITE" />
          </children>
       </HBox>
-      <BorderPane prefHeight="639.0" prefWidth="1100.0">
+      <BorderPane>
          <center>
-            <Label prefHeight="119.0" prefWidth="922.0" text="Данную работу выполнила студентка группы ПИ19-2 - Мамедова Лейла Али-агаевна." textFill="#ced4da" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="430.0" fitWidth="425.0">
+               <image>
+                  <Image url="@../sample/img/girl.jpeg" />
+               </image>
+            </ImageView>
+         </center>
+      </BorderPane>
+      <BorderPane prefHeight="136.0" prefWidth="1100.0">
+         <center>
+            <Label prefHeight="91.0" prefWidth="922.0" text="Данную работу выполнила студентка группы ПИ19-2 - Мамедова Лейла Али-агаевна." textFill="#ced4da" BorderPane.alignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>

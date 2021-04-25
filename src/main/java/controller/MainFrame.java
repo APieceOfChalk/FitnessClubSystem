@@ -24,6 +24,9 @@ public class MainFrame {
         loadView(Menu.Home);
     }
 
+    /**
+     * Загрузка определенной страницы в зависимости от того, какую кнопку нажал пользователь.
+     */
     @FXML
     private void clickMenu(MouseEvent event) {
 
@@ -38,11 +41,14 @@ public class MainFrame {
                     .build().show();
         } else {
             Menu menu = Menu.valueOf(node.getId());
-            System.out.println(node.getId());
             loadView(menu);
         }
     }
 
+    /**
+     * Загрузка элементов на страницах.
+     * @param menu
+     */
     private void loadView(Menu menu) {
         try {
 
@@ -67,6 +73,9 @@ public class MainFrame {
         }
     }
 
+    /**
+     * Загрузка страницы приложения.
+     */
     public static void show() {
         try {
             Stage stage = new Stage();

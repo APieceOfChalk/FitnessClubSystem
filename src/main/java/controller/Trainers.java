@@ -8,14 +8,40 @@ import main.java.models.ApiModel;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Модель тренера.
+ */
 public class Trainers implements ApiModel {
 
+    /**
+     * Id.
+     */
     SimpleStringProperty id;
+    /**
+     * ФИО тренера.
+     */
     SimpleStringProperty name;
+    /**
+     * Паспорт тренера.
+     */
     SimpleStringProperty passport;
+    /**
+     * Телефон тренера.
+     */
     SimpleStringProperty phone;
+    /**
+     * Адрес тренера.
+     */
     SimpleStringProperty address;
 
+    /**
+     * Конструктор - создание нового объекта с определенными значениями
+     * @param id - id
+     * @param name - ФИО
+     * @param passport - паспорт
+     * @param phone - телефон
+     * @param address - адрес
+     */
     public Trainers(String id, String name, String passport, String phone, String address) {
         this.id = new SimpleStringProperty(id);
         this.name = new SimpleStringProperty(name);
@@ -26,6 +52,10 @@ public class Trainers implements ApiModel {
 
     public Trainers() {
     }
+
+    /**
+     * И далее идут геттеры и сеттеры, не отчающиеся от тех, которые присутствуют в сервере.
+     */
 
     public String getId() { return id.get(); }
 
@@ -76,6 +106,10 @@ public class Trainers implements ApiModel {
                 '}';
     }
 
+    /**
+     * Переводит все переданные параметры в map и переводит map в json.
+     * @return map в Json
+     */
     @Override
     public String toJson() {
         Map<String, String> map = new HashMap<>();

@@ -11,8 +11,14 @@ import javafx.stage.StageStyle;
 import main.java.controller.Places;
 import main.java.utils.RestApi;
 
+/**
+ * Контроллер для формы добавления зала.
+ */
 public class PlacesAdd {
 
+    /**
+     * Название зала.
+     */
     @FXML
     private TextField name;
     @FXML
@@ -22,11 +28,17 @@ public class PlacesAdd {
 
     private RestApi myApiSession = new RestApi();
 
+    /**
+     * Выход из окна.
+     */
     @FXML
     private void handleCancel() {
         name.getScene().getWindow().hide();
     }
 
+    /**
+     * Открытие окна.
+     */
     public static void showAddView() {
         try {
 
@@ -46,6 +58,10 @@ public class PlacesAdd {
         }
     }
 
+    /**
+     * Проверка на корректность введенных данных.
+     * @return сообщение об ошибке.
+     */
     private boolean isInputValid() {
         String errorMessage = "";
         if (name.getText() == null || name.getText().length() == 0) {
@@ -61,6 +77,9 @@ public class PlacesAdd {
         }
     }
 
+    /**
+     * Создание нового зала на нажатие кнопки ОК.
+     */
     @FXML
     private void handleOk() {
         if (isInputValid()) {
@@ -71,6 +90,9 @@ public class PlacesAdd {
         }
     }
 
+    /**
+     * Название формы.
+     */
     public void setTitle() {
         title.setText("Создать новый зал");
     }

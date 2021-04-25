@@ -4,6 +4,9 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import main.java.controller.LoginController;
 
+/**
+ * Класс, запускающий приложение.
+ */
 public class Main extends Application {
 
     @Override

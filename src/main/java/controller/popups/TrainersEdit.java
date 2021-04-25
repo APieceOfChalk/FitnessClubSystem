@@ -11,15 +11,29 @@ import javafx.stage.StageStyle;
 import main.java.controller.Trainers;
 import main.java.utils.RestApi;
 
-
+/**
+ * Контроллер для формы изменения тренера.
+ */
 public class TrainersEdit {
 
+    /**
+     * ФИО.
+     */
     @FXML
     private TextField name;
+    /**
+     * Паспортные данные.
+     */
     @FXML
     private TextField passport;
+    /**
+     * Телефон.
+     */
     @FXML
     private TextField phone;
+    /**
+     * Адрес.
+     */
     @FXML
     private TextField address;
     @FXML
@@ -31,12 +45,17 @@ public class TrainersEdit {
     private Trainers trainer;
 
 
-
+    /**
+     * Выход из окна.
+     */
     @FXML
     private void handleCancel() {
         name.getScene().getWindow().hide();
     }
 
+    /**
+     * Открытие окна.
+     */
     public static void showEditView(Trainers trainer) {
         try {
 
@@ -57,6 +76,9 @@ public class TrainersEdit {
         }
     }
 
+    /**
+     * Сохранение изменений на нажатие кнопки ОК.
+     */
     @FXML
     private void handleOk() {
         if (isInputValid()) {
@@ -69,6 +91,10 @@ public class TrainersEdit {
         }
     }
 
+    /**
+     * Автозаполнение предыдущих занчений.
+     * @param trainer - предыдущий тренер.
+     */
     public void setTrainer(Trainers trainer) {
         this.trainer = trainer;
         title.setText("Редактировать клиента");
@@ -79,7 +105,10 @@ public class TrainersEdit {
         address.setText(trainer.getAddress());
     }
 
-
+    /**
+     * Проверка на корректность введенных данных.
+     * @return сообщение об ошибке.
+     */
     private boolean isInputValid() {
         String errorMessage = "";
         if (name.getText() == null || name.getText().length() == 0) {

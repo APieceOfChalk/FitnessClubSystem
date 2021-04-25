@@ -27,14 +27,29 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Контроллер для формы добавления абонемента.
+ */
 public class SubscriptionsAdd {
 
+    /**
+     * Выбор клиента.
+     */
     @FXML
     private ComboBox<Clients> clientsComboBox;
+    /**
+     * Выбор занятия.
+     */
     @FXML
     private ComboBox<Classes> activitiesComboBox;
+    /**
+     * Срок.
+     */
     @FXML
     private TextField dateField;
+    /**
+     * Цена.
+     */
     @FXML
     private TextField priceField;
     @FXML
@@ -44,11 +59,17 @@ public class SubscriptionsAdd {
 
     private RestApi myApiSession = new RestApi();
 
+    /**
+     * Выход из окна.
+     */
     @FXML
     private void handleCancel() {
         clientsComboBox.getScene().getWindow().hide();
     }
 
+    /**
+     * Открытие окна.
+     */
     public static void showAddView() {
         try {
 
@@ -68,6 +89,10 @@ public class SubscriptionsAdd {
         }
     }
 
+    /**
+     * Заполнение ComboBox клиентами и занятиями.
+     * @throws IOException если нет подключения к серверу.
+     */
     public void initialize() throws IOException {
         String cUrl = "http://localhost:8080/clients";
         URL url = new URL(cUrl);
@@ -155,6 +180,10 @@ public class SubscriptionsAdd {
 
     }
 
+    /**
+     * Проверка на корректность введенных данных.
+     * @return сообщение об ошибке.
+     */
     private boolean isInputValid() {
         String errorMessage = "";
         if (dateField.getText() == null || dateField.getText().length() == 0) {
@@ -179,6 +208,9 @@ public class SubscriptionsAdd {
         }
     }
 
+    /**
+     * Создание нового абонемента на нажатие кнопки ОК.
+     */
     @FXML
     private void handleOk() {
         if (isInputValid()) {
@@ -198,6 +230,9 @@ public class SubscriptionsAdd {
         }
     }
 
+    /**
+     * Название формы.
+     */
     public void setTitle() {
         title.setText("Создать новый абонемент");
     }
